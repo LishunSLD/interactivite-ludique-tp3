@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://dajw71x56lh6"]
+
+[ext_resource type="Texture2D" uid="uid://bhwl4xgfu170u" path="res://assets/ui/roofmoon.png" id="2_wosw1"]
+[ext_resource type="PackedScene" uid="uid://b4e7rrodp27jl" path="res://scenes/reglages.tscn" id="3_p6dhs"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Jouer" type="Button" parent="."]
+layout_mode = 0
+offset_left = -27.0
+offset_top = -16.0
+offset_right = 22.0
+offset_bottom = 15.0
+text = "Jouer"
+
+[node name="Reglages" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = -38.0
+offset_top = 35.0
+offset_right = 39.0
+offset_bottom = 66.0
+text = "Réglages"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+show_behind_parent = true
+layout_mode = 0
+offset_left = -198.0
+offset_top = -111.0
+offset_right = 326.0
+offset_bottom = 253.0
+texture = ExtResource("2_wosw1")
+expand_mode = 1
+
+[node name="ReglagesMenu" parent="." instance=ExtResource("3_p6dhs")]
+visible = false
+
+[connection signal="pressed" from="Reglages" to="." method="_on_reglages_pressed"]

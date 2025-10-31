@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4e7rrodp27jl"]
+
+[ext_resource type="Script" uid="uid://hy3q2h2p1tlm" path="res://script/reglages.gd" id="1_5vpvs"]
+[ext_resource type="Texture2D" uid="uid://bc0gn4t0kd43x" path="res://assets/ui/mountainmoon-settings.png" id="1_bsbu6"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_5vpvs")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.7, 1.7)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -1688.0
+offset_top = -1211.0
+offset_right = 3619.0
+offset_bottom = 2210.0
+color = Color(0.129412, 0.0980392, 0.0980392, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -586.0
+offset_top = -366.0
+offset_right = 573.0
+offset_bottom = 346.0
+texture = ExtResource("1_bsbu6")
+expand_mode = 1
+
+[node name="Jouer" type="Button" parent="."]
+layout_mode = 0
+offset_left = -92.0
+offset_top = 183.0
+offset_right = 78.0
+offset_bottom = 238.0
+text = "Retour"
+
+[connection signal="pressed" from="Jouer" to="." method="_on_jouer_pressed"]

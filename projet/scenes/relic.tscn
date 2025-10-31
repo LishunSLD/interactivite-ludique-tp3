@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfmsqe7rcej75"]
+
+[ext_resource type="Texture2D" uid="uid://dwdqg5e670mbh" path="res://assets/textures/relic.png" id="1_4ydfr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fws66"]
+
+[node name="Relic" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_4ydfr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_fws66")

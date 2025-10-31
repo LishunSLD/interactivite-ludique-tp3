@@ -1,0 +1,209 @@
+[gd_scene load_steps=22 format=3 uid="uid://doucbcypiia84"]
+
+[ext_resource type="Texture2D" uid="uid://dsaodyx40rby2" path="res://assets/cercey/cercey-walk.png" id="1_ajm1g"]
+[ext_resource type="Material" uid="uid://dl5ghenxjkssw" path="res://assets/materials/lighting_shader.tres" id="2_gybp4"]
+[ext_resource type="Texture2D" uid="uid://sqesybe0dmxh" path="res://assets/ui/textbox.png" id="2_k7xo7"]
+[ext_resource type="Script" uid="uid://cnb4n0uw5ylbi" path="res://script/camera.gd" id="2_rquol"]
+[ext_resource type="FontFile" uid="uid://deqbrvyutm11s" path="res://assets/font/VCR_OSD_MONO_1.001.ttf" id="3_va6wk"]
+[ext_resource type="AudioStream" uid="uid://dhej50v7yhg7e" path="res://assets/sfx/footstep.wav" id="5_hy8lg"]
+[ext_resource type="AudioStream" uid="uid://l6t5gqpi60bw" path="res://assets/sfx/dialogue.wav" id="6_gybp4"]
+[ext_resource type="Shader" uid="uid://cca62dbawb064" path="res://assets/materials/shaders.gdshader" id="7_ek6l0"]
+[ext_resource type="AudioStream" uid="uid://cuo70d5lj7rij" path="res://assets/sfx/relicpickup.wav" id="7_keeya"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_keeya"]
+atlas = ExtResource("1_ajm1g")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hy8lg"]
+atlas = ExtResource("1_ajm1g")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajm1g"]
+atlas = ExtResource("1_ajm1g")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7xo7"]
+atlas = ExtResource("1_ajm1g")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_va6wk"]
+atlas = ExtResource("1_ajm1g")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rquol"]
+atlas = ExtResource("1_ajm1g")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjci4"]
+atlas = ExtResource("1_ajm1g")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dygk7"]
+atlas = ExtResource("1_ajm1g")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gybp4"]
+atlas = ExtResource("1_ajm1g")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rjci4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_keeya")
+}],
+"loop": true,
+"name": &"idle_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hy8lg")
+}],
+"loop": true,
+"name": &"idle_up",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajm1g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k7xo7")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_va6wk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rquol")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rjci4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dygk7")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hy8lg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gybp4")
+}],
+"loop": true,
+"name": &"walk_up",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ajm1g"]
+size = Vector2(9, 7.75)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wxxgv"]
+shader = ExtResource("7_ek6l0")
+shader_parameter/exposure = 0.7
+shader_parameter/contrast = 1.24
+shader_parameter/saturation = 0.8
+shader_parameter/enable_pixelate = true
+shader_parameter/pixel_factor = 4.0
+shader_parameter/enable_posterize = false
+shader_parameter/color_levels = 8.0
+shader_parameter/dither_strength = 0.35
+shader_parameter/chrom_aberration = 0.1
+shader_parameter/vignette_strength = 1.2
+shader_parameter/grain_strength = 0.5
+shader_parameter/tint_strength = 0.271
+shader_parameter/scanline_density = 240.0
+shader_parameter/scanline_strength = 0.15
+shader_parameter/glitch_strength = 0.12
+shader_parameter/glitch_speed = 2.0
+shader_parameter/viewport_size_override = Vector2(0, 0)
+
+[node name="Cercey" type="CharacterBody2D"]
+top_level = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_rjci4")
+animation = &"idle_down"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 11.125)
+shape = SubResource("RectangleShape2D_ajm1g")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(5, 5)
+script = ExtResource("2_rquol")
+
+[node name="TextBox" type="Sprite2D" parent="Camera2D"]
+position = Vector2(-67.25, 80.5196)
+scale = Vector2(0.53209, 0.697017)
+texture = ExtResource("2_k7xo7")
+
+[node name="Name" type="RichTextLabel" parent="Camera2D"]
+offset_left = -234.0
+offset_top = 22.0
+offset_right = 46.0
+offset_bottom = 50.0
+bbcode_enabled = true
+text = "[b]Cercey[/b]"
+tab_size = 1
+
+[node name="Text" type="RichTextLabel" parent="Camera2D"]
+offset_left = -238.0
+offset_top = 69.0
+offset_right = 103.0
+offset_bottom = 140.0
+theme_override_fonts/normal_font = ExtResource("3_va6wk")
+text = "Hmm"
+
+[node name="Dialogue" type="AudioStreamPlayer2D" parent="Camera2D"]
+stream = ExtResource("6_gybp4")
+
+[node name="VignetteZoomedOut" type="ColorRect" parent="Camera2D"]
+visible = false
+material = ExtResource("2_gybp4")
+offset_left = -294.0
+offset_top = -170.0
+offset_right = 280.0
+offset_bottom = 171.0
+
+[node name="VignetteZoomedIn" type="ColorRect" parent="Camera2D"]
+visible = false
+material = ExtResource("2_gybp4")
+offset_left = -192.0
+offset_top = -108.0
+offset_right = 192.0
+offset_bottom = 109.0
+
+[node name="Shaders" type="ColorRect" parent="Camera2D"]
+visible = false
+material = SubResource("ShaderMaterial_wxxgv")
+offset_left = -802.0
+offset_top = -457.0
+offset_right = 707.0
+offset_bottom = 386.0
+
+[node name="Footstep" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_hy8lg")
+volume_db = -12.586
+
+[node name="Pickup" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_keeya")
