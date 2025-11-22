@@ -18,6 +18,7 @@ var pattern_type: int = 0
 
 @onready var player = get_parent().get_node("Cercey")
 @onready var shadersMat: ShaderMaterial = $Sprite2D.material
+@onready var sfxShoot: AudioStreamPlayer2D = $Shoot
 
 func _ready():
 	player.SPEED = 160
@@ -35,13 +36,13 @@ func _process(delta):
 
 	if shoot_timer >= shoot_interval:
 		shoot_timer = 0
+		sfxShoot.play()
 		shoot_attack_pattern()
 
 	if pattern_timer >= 5.0:
 		pattern_timer = 0
 		pattern_type = randi() % 3
 
-	# Ally bullets spawning
 	if ally_bullets.size() == 0 and respawn_timer <= 0:
 		spawn_ally_bullets()
 	elif ally_bullets.size() > 0:

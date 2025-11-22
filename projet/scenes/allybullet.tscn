@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://co0un16lmxned"]
+[gd_scene load_steps=8 format=3 uid="uid://co0un16lmxned"]
 
 [ext_resource type="Script" uid="uid://cpjxe3rfo74ks" path="res://script/allybullet.gd" id="1_q5p22"]
 [ext_resource type="Texture2D" uid="uid://dqu1xxwlnfvqb" path="res://assets/sprites/textures/bullet.png" id="2_67yj1"]
 [ext_resource type="Shader" uid="uid://b2hvabvbesy1v" path="res://assets/materials/glow_red.gdshader" id="2_q5p22"]
 [ext_resource type="Texture2D" uid="uid://5w5jaua7o6kj" path="res://assets/materials/red.png" id="3_xaiql"]
+[ext_resource type="AudioStream" uid="uid://48ltwlhrxpw1" path="res://assets/audio/sfx/shoot.wav" id="5_xaiql"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fi64k"]
 shader = ExtResource("2_q5p22")
@@ -27,5 +28,8 @@ texture = ExtResource("2_67yj1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_hagby")
+
+[node name="Shoot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_xaiql")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

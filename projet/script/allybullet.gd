@@ -2,6 +2,7 @@ extends Area2D
 
 @export var speed: float = 250
 @export var lifetime: float = 5.0
+@onready var sfxShoot: AudioStreamPlayer2D = $Shoot
 
 var picked_up: bool = false
 var target: Node2D
@@ -23,6 +24,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.name == "Cercey" and not picked_up:
 		picked_up = true
 		target = get_parent().get_node("Lusin")
+		sfxShoot.play()
 	elif body.name == "Lusin":
 		Global.bossHealth -= 1
 		var shadersMat: ShaderMaterial = body.get_node("Sprite2D").material
