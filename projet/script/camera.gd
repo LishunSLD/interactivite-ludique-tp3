@@ -7,12 +7,15 @@ extends Camera2D
 @onready var vignetteIn: ColorRect = $VignetteZoomedIn
 @onready var vignetteOut: ColorRect = $VignetteZoomedOut
 @onready var shaders: ColorRect = $Shaders
+@onready var shadersMat: ShaderMaterial = $Shaders.material
 
 @onready var sfxDialogue: AudioStreamPlayer2D = $Dialogue
+@onready var clefDisplay: RichTextLabel = $Clefs
 
 var _is_showing := false
 var _queue: Array = []
 
+@onready var parent: Node2D = $"../../"
 
 func _ready() -> void:
 	vignetteIn.show()
@@ -25,17 +28,17 @@ func _ready() -> void:
 	dialogBox.modulate.a = 0.0
 	dialogName.modulate.a = 0.0
 	dialogText.modulate.a = 0.0
-	
-	dialog("[b]Cercey[/b]", "Quel genre de passage caché est-ce ?", 3)
-	dialog("[b]Cercey[/b]", "Maintenant, à la recherche du Comte.", 3)
-	dialog("[b]Cercey[/b]", "Où est-il?", 2)
 
+func _process(delta: float) -> void:
+	var keys = Global.keys
+	clefDisplay.text = str(keys)
 
-func dialog(name_text: String, message: String, duration: float = 3.0) -> void:
+func dialog(name_text: String, message: String, duration: float = 3.0, postfx: bool = false, end: bool = false) -> void:
 	_queue.append({
 		"name": name_text,
 		"message": message,
-		"duration": duration
+		"duration": duration,
+		"postfx": postfx
 	})
 
 	if not _is_showing:
@@ -49,11 +52,11 @@ func next_dialog() -> void:
 	
 	_is_showing = true
 	var next = _queue.pop_front()
-	await display_dialog(next["name"], next["message"], next["duration"])
+	await display_dialog(next["name"], next["message"], next["duration"], next["postfx"])
 	next_dialog()
 
 
-func display_dialog(name_text: String, message: String, duration: float) -> void:
+func display_dialog(name_text: String, message: String, duration: float, postfx: bool) -> void:
 	#zoom = Vector2(3, 3)
 	#vignetteIn.hide()
 	dialogName.text = name_text
@@ -61,6 +64,11 @@ func display_dialog(name_text: String, message: String, duration: float) -> void
 	dialogBox.visible = true
 	dialogName.visible = true
 	dialogText.visible = true
+	#clefDisplay.text = str(keys)
+	
+	if postfx == true:
+		shadersMat.set_shader_parameter("enable_posterize", true)
+		shadersMat.set_shader_parameter("exposure", 1.16)
 	
 	sfxDialogue.play()
 
@@ -78,6 +86,8 @@ func display_dialog(name_text: String, message: String, duration: float) -> void
 	fade_out.parallel().tween_property(dialogText, "modulate:a", 0.0, 0.5)
 	await fade_out.finished
 
+	shadersMat.set_shader_parameter("enable_posterize", false)
+	shadersMat.set_shader_parameter("exposure", 0.45)
 	dialogBox.visible = false
 	dialogName.visible = false
 	dialogText.visible = false

@@ -1,58 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://h14bdeaxdrbn"]
+[gd_scene load_steps=3 format=3 uid="uid://h14bdeaxdrbn"]
 
-[ext_resource type="PackedScene" uid="uid://cvltj7a8v5qi" path="res://scenes/game.tscn" id="1_4dvvg"]
-[ext_resource type="Script" uid="uid://cyyouj140jtwg" path="res://script/title.gd" id="1_rnjyy"]
-[ext_resource type="Texture2D" uid="uid://bhwl4xgfu170u" path="res://assets/ui/roofmoon.png" id="2_4vge2"]
-[ext_resource type="PackedScene" uid="uid://b4e7rrodp27jl" path="res://scenes/reglages.tscn" id="3_04qyp"]
+[ext_resource type="PackedScene" uid="uid://dajw71x56lh6" path="res://scenes/title.tscn" id="2_rnjyy"]
+[ext_resource type="AudioStream" uid="uid://g0os1bjqyiyy" path="res://assets/audio/soundtrack/soucou.wav" id="7_fws66"]
 
 [node name="Container" type="Node2D"]
-script = ExtResource("1_rnjyy")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(3.91, 50)
 zoom = Vector2(3, 3)
 
-[node name="Title" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Control" parent="." instance=ExtResource("2_rnjyy")]
+offset_left = -2.0
+offset_top = 40.0
+offset_right = 38.0
+offset_bottom = 80.0
 
-[node name="TextureRect" type="TextureRect" parent="Title"]
-show_behind_parent = true
-z_index = -1
-z_as_relative = false
-layout_mode = 0
-offset_left = -722.0
-offset_top = -532.0
-offset_right = 781.0
-offset_bottom = 538.0
-texture = ExtResource("2_4vge2")
-
-[node name="Jouer" type="Button" parent="Title"]
-z_index = 1
-z_as_relative = false
-layout_mode = 0
-offset_left = -27.0
-offset_top = -16.0
-offset_right = 22.0
-offset_bottom = 15.0
-text = "Jouer"
-
-[node name="Reglages" type="Button" parent="Title"]
-layout_mode = 1
-anchors_preset = -1
-offset_left = -38.0
-offset_top = 35.0
-offset_right = 39.0
-offset_bottom = 66.0
-text = "Réglages"
-
-[node name="ReglagesMenu" parent="Title" instance=ExtResource("3_04qyp")]
-visible = false
-
-[node name="Node2D" parent="." instance=ExtResource("1_4dvvg")]
-visible = false
-
-[connection signal="pressed" from="Title/Jouer" to="." method="_on_jouer_pressed"]
-[connection signal="pressed" from="Title/Reglages" to="." method="_on_reglages_pressed"]
+[node name="TitleTheme" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_fws66")
+volume_db = -6.741
+autoplay = true

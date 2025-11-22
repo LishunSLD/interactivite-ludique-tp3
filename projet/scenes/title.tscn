@@ -1,42 +1,49 @@
 [gd_scene load_steps=3 format=3 uid="uid://dajw71x56lh6"]
 
-[ext_resource type="Texture2D" uid="uid://bhwl4xgfu170u" path="res://assets/ui/roofmoon.png" id="2_wosw1"]
-[ext_resource type="PackedScene" uid="uid://b4e7rrodp27jl" path="res://scenes/reglages.tscn" id="3_p6dhs"]
+[ext_resource type="Script" uid="uid://cyyouj140jtwg" path="res://script/title.gd" id="1_p6dhs"]
+[ext_resource type="Texture2D" uid="uid://cpwtuib4f12sh" path="res://assets/ui/titlescreen.png" id="1_wosw1"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_p6dhs")
 
-[node name="Jouer" type="Button" parent="."]
-layout_mode = 0
-offset_left = -27.0
-offset_top = -16.0
-offset_right = 22.0
-offset_bottom = 15.0
-text = "Jouer"
-
-[node name="Reglages" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = -1
-offset_left = -38.0
-offset_top = 35.0
-offset_right = 39.0
-offset_bottom = 66.0
-text = "Réglages"
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+offset_left = -3155.0
+offset_top = -2131.0
+offset_right = 3760.0
+offset_bottom = 2227.0
+color = Color(0, 0, 0, 1)
 
 [node name="TextureRect" type="TextureRect" parent="."]
 show_behind_parent = true
 layout_mode = 0
-offset_left = -198.0
-offset_top = -111.0
-offset_right = 326.0
-offset_bottom = 253.0
-texture = ExtResource("2_wosw1")
+offset_left = -263.0
+offset_top = -171.0
+offset_right = 261.0
+offset_bottom = 193.0
+texture = ExtResource("1_wosw1")
 expand_mode = 1
 
-[node name="ReglagesMenu" parent="." instance=ExtResource("3_p6dhs")]
-visible = false
+[node name="Jouer" type="Button" parent="."]
+layout_mode = 0
+offset_left = -102.0
+offset_top = -33.0
+offset_right = 101.0
+offset_bottom = 35.0
+flat = true
 
+[node name="Reglages" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = -104.0
+offset_top = 71.0
+offset_right = 101.0
+offset_bottom = 135.0
+flat = true
+
+[connection signal="pressed" from="Jouer" to="." method="_on_jouer_pressed"]
 [connection signal="pressed" from="Reglages" to="." method="_on_reglages_pressed"]

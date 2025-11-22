@@ -10,6 +10,10 @@ var SPEED = 150.0
 
 var directionName = "down";
 
+func _process(delta: float) -> void:
+	if Global.health < 1:
+		get_tree().change_scene_to_file("./scenes/lose.tscn")
+
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("reset"):
 		get_tree().reload_current_scene()

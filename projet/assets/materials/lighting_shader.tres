@@ -4,6 +4,6 @@
 
 [resource]
 shader = ExtResource("1_xrcgg")
-shader_parameter/vignette_intensity = 0.7
+shader_parameter/vignette_intensity = 1.5
 shader_parameter/vignette_opacity = 1.0
 shader_parameter/vignette_rgb = Color(0, 0, 0, 1)

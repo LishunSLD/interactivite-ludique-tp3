@@ -1,0 +1,69 @@
+[gd_scene load_steps=14 format=3 uid="uid://sjcc0vbcvd04"]
+
+[ext_resource type="PackedScene" uid="uid://cs2mgub2ol6ne" path="res://scenes/cerceyfight.tscn" id="1_wyshd"]
+[ext_resource type="Script" uid="uid://cucenm2qycm3l" path="res://script/player.gd" id="3_dvvm8"]
+[ext_resource type="PackedScene" uid="uid://c1o6veiw80u0" path="res://scenes/bullet.tscn" id="3_wyshd"]
+[ext_resource type="Texture2D" uid="uid://csfmp3t5yatso" path="res://assets/sprites/characters/lusin.png" id="4_d830q"]
+[ext_resource type="Script" uid="uid://dgxydhobm1pvv" path="res://script/lusin.gd" id="5_4xd4m"]
+[ext_resource type="Script" uid="uid://cpjxe3rfo74ks" path="res://script/allybullet.gd" id="5_dvvm8"]
+[ext_resource type="PackedScene" uid="uid://co0un16lmxned" path="res://scenes/allybullet.tscn" id="5_wqrb0"]
+[ext_resource type="AudioStream" uid="uid://48ltwlhrxpw1" path="res://assets/audio/sfx/shoot.wav" id="6_4xd4m"]
+[ext_resource type="AudioStream" uid="uid://blo1vu3m3lp2f" path="res://assets/audio/soundtrack/lusintheme.wav" id="6_78d3w"]
+[ext_resource type="Shader" uid="uid://b2hvabvbesy1v" path="res://assets/materials/glow_red.gdshader" id="6_q4u44"]
+[ext_resource type="Texture2D" uid="uid://5w5jaua7o6kj" path="res://assets/materials/red.png" id="7_edryq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dvvm8"]
+shader = ExtResource("6_q4u44")
+shader_parameter/color_gradient = ExtResource("7_edryq")
+shader_parameter/size_effect = 5.0
+shader_parameter/speed = 0.0
+shader_parameter/highlight_strength = 0.8
+shader_parameter/color_mode_toggle = false
+shader_parameter/is_horizontal = false
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wyshd"]
+radius = 5.0
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Cercey" parent="." instance=ExtResource("1_wyshd")]
+script = ExtResource("3_dvvm8")
+
+[node name="Bullet" parent="." instance=ExtResource("3_wyshd")]
+position = Vector2(866, 731)
+
+[node name="AllyBullet" parent="." instance=ExtResource("3_wyshd")]
+position = Vector2(1720, 1466)
+script = ExtResource("5_dvvm8")
+speed = 250.0
+
+[node name="Lusin" type="Area2D" parent="."]
+z_index = 1
+position = Vector2(-1, -126)
+script = ExtResource("5_4xd4m")
+bullet_scene = ExtResource("3_wyshd")
+ally_bullet_scene = ExtResource("5_wqrb0")
+shoot_interval = 0.6
+ally_respawn_delay = 2.5
+arena_width = 400.0
+arena_height = 300.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Lusin"]
+material = SubResource("ShaderMaterial_dvvm8")
+texture = ExtResource("4_d830q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lusin"]
+shape = SubResource("CapsuleShape2D_wyshd")
+
+[node name="Shoot" type="AudioStreamPlayer2D" parent="Lusin"]
+stream = ExtResource("6_4xd4m")
+
+[node name="LusinTheme" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_78d3w")
+volume_db = -4.333
+autoplay = true
+
+[connection signal="area_entered" from="AllyBullet" to="AllyBullet" method="_on_area_entered"]
+[connection signal="area_shape_entered" from="AllyBullet" to="AllyBullet" method="_on_area_shape_entered"]
+[connection signal="body_shape_entered" from="AllyBullet" to="AllyBullet" method="_on_body_shape_entered"]
+[connection signal="area_entered" from="Lusin" to="Lusin" method="_on_area_entered"]

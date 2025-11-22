@@ -1,0 +1,200 @@
+[gd_scene load_steps=23 format=3 uid="uid://cs2mgub2ol6ne"]
+
+[ext_resource type="Texture2D" uid="uid://dsaodyx40rby2" path="res://assets/sprites/characters/cercey/cercey-walk.png" id="1_hyom3"]
+[ext_resource type="Shader" uid="uid://b2hvabvbesy1v" path="res://assets/materials/glow_red.gdshader" id="1_rw01k"]
+[ext_resource type="Texture2D" uid="uid://5w5jaua7o6kj" path="res://assets/materials/red.png" id="2_hyom3"]
+[ext_resource type="Script" uid="uid://cv4hptg5acsgr" path="res://script/camera_bossfight.gd" id="2_w3r6m"]
+[ext_resource type="AudioStream" uid="uid://l6t5gqpi60bw" path="res://assets/audio/sfx/dialogue.wav" id="5_1yxb3"]
+[ext_resource type="Material" uid="uid://dl5ghenxjkssw" path="res://assets/materials/lighting_shader.tres" id="6_n7bn8"]
+[ext_resource type="Shader" uid="uid://cca62dbawb064" path="res://assets/materials/shaders.gdshader" id="7_c5nxa"]
+[ext_resource type="AudioStream" uid="uid://dhej50v7yhg7e" path="res://assets/audio/sfx/footstep.wav" id="9_u7te6"]
+[ext_resource type="AudioStream" uid="uid://cuo70d5lj7rij" path="res://assets/audio/sfx/relicpickup.wav" id="10_tbged"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hkbic"]
+shader = ExtResource("1_rw01k")
+shader_parameter/color_gradient = ExtResource("2_hyom3")
+shader_parameter/size_effect = 5.0
+shader_parameter/speed = 0.0
+shader_parameter/highlight_strength = 0.8
+shader_parameter/color_mode_toggle = false
+shader_parameter/is_horizontal = false
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_keeya"]
+atlas = ExtResource("1_hyom3")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hy8lg"]
+atlas = ExtResource("1_hyom3")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajm1g"]
+atlas = ExtResource("1_hyom3")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7xo7"]
+atlas = ExtResource("1_hyom3")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_va6wk"]
+atlas = ExtResource("1_hyom3")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rquol"]
+atlas = ExtResource("1_hyom3")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjci4"]
+atlas = ExtResource("1_hyom3")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dygk7"]
+atlas = ExtResource("1_hyom3")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gybp4"]
+atlas = ExtResource("1_hyom3")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rjci4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_keeya")
+}],
+"loop": true,
+"name": &"idle_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hy8lg")
+}],
+"loop": true,
+"name": &"idle_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajm1g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k7xo7")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_va6wk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rquol")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rjci4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dygk7")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hy8lg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gybp4")
+}],
+"loop": true,
+"name": &"walk_up",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ajm1g"]
+size = Vector2(9, 25)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wxxgv"]
+shader = ExtResource("7_c5nxa")
+shader_parameter/exposure = 0.45
+shader_parameter/contrast = 1.2
+shader_parameter/saturation = 0.946
+shader_parameter/enable_pixelate = true
+shader_parameter/pixel_factor = 3.0
+shader_parameter/enable_posterize = false
+shader_parameter/color_levels = 2.0
+shader_parameter/dither_strength = 0.0
+shader_parameter/chrom_aberration = 0.05
+shader_parameter/vignette_strength = 2.0
+shader_parameter/grain_strength = 0.3
+shader_parameter/tint_strength = 0.078
+shader_parameter/scanline_density = 274.375
+shader_parameter/scanline_strength = 0.317
+shader_parameter/glitch_strength = 0.084
+shader_parameter/glitch_speed = 4.0
+shader_parameter/viewport_size_override = Vector2(1920, 1080)
+
+[node name="Cercey" type="CharacterBody2D"]
+top_level = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_hkbic")
+sprite_frames = SubResource("SpriteFrames_rjci4")
+animation = &"idle_down"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 1.5)
+shape = SubResource("RectangleShape2D_ajm1g")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+script = ExtResource("2_w3r6m")
+
+[node name="Dialogue" type="AudioStreamPlayer2D" parent="Camera2D"]
+stream = ExtResource("5_1yxb3")
+
+[node name="VignetteZoomedOut" type="ColorRect" parent="Camera2D"]
+visible = false
+material = ExtResource("6_n7bn8")
+offset_left = -294.0
+offset_top = -170.0
+offset_right = 280.0
+offset_bottom = 171.0
+
+[node name="VignetteZoomedIn" type="ColorRect" parent="Camera2D"]
+visible = false
+material = ExtResource("6_n7bn8")
+offset_left = -192.0
+offset_top = -108.0
+offset_right = 192.0
+offset_bottom = 109.0
+
+[node name="Shaders" type="ColorRect" parent="Camera2D"]
+material = SubResource("ShaderMaterial_wxxgv")
+offset_left = -802.0
+offset_top = -457.0
+offset_right = 707.0
+offset_bottom = 386.0
+
+[node name="Clefs" type="RichTextLabel" parent="Camera2D"]
+visible = false
+offset_left = -154.0
+offset_top = -85.0
+offset_right = -97.0
+offset_bottom = -45.0
+scale = Vector2(0.555, 0.555)
+text = "0"
+
+[node name="Footstep" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_u7te6")
+volume_db = -80.0
+
+[node name="Pickup" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_tbged")
